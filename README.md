@@ -16,6 +16,9 @@ cd twitter-clone1
 3) public->images->tweetImages
 4) public->images->coverpics
 
+## Add ```.env```
+Add .env file in root directory and add global variable as per example.env
+
 ## Install dependencies and run
 ```
 npm install
