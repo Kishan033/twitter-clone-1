@@ -107,6 +107,7 @@ exports.registrationPost = async function (req, res) {
 
 function createCipherText (user) {
 	let plainText = JSON.stringify(user);
+	console.log("process.env.SECRET_KEY", process.env.SECRET_KEY);
 	let cipher = crypto.createCipher('aes-256-ctr', process.env.SECRET_KEY);
 	let crypted = cipher.update(plainText, 'utf8', 'hex');
 	crypted += cipher.final('hex');
