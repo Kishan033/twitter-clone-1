@@ -139,6 +139,7 @@ exports.showFriendProfileGet = async function (req, res) {
 			status = 'Follow';
 		}
 	}
+	console.log("request.headers.host", request.headers.host)
 	let a = JSON.parse(JSON.stringify(user));
 	a['followingcount'] = friendfollowingcount;
 	a['followercount'] = friendfollowercount;
@@ -195,7 +196,7 @@ exports.editprofilePost = async function (req, res) {
 	if (req.file !== undefined) {
 		User.updateProfile({username: req.user.username}, req.body.name, req.body.bio,
 			req.body.email, req.body.location, req.body.dob,
-			req.file.path).then();
+			req.file.path.replace("public/", "")).then();
 		res.redirect('/showprofile');
 	} else {
 		User.updateProfile({username: req.user.username}, req.body.name, req.body.bio,
@@ -208,7 +209,7 @@ exports.editprofilePost = async function (req, res) {
 // --------------------------EDIT  PROFILE POST-------------------------------//
 exports.updateCoverImage = async function (req, res) {
 	if (req.file !== undefined) {
-		User.updateCoverImage({username: req.user.username}, req.file.path).then();
+		User.updateCoverImage({username: req.user.username}, req.file.path.replace("public/", "")).then();
 		res.redirect('/showprofile');
 	} else {
 		res.redirect('/showprofile');

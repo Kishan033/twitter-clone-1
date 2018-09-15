@@ -67,7 +67,8 @@ exports.registrationPost = async function (req, res) {
 		let newUser = new User({name: uname,
 			username: uusername,
 			email: uemail,
-			password: upassword
+			password: upassword,
+			Status: true,
 		});
 		await User.createUser(newUser, async function (err, userInfo) {
 			if (err) {

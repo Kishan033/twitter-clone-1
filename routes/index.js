@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 var multer = require('multer');
+const fs = require('fs');
 var passport = require('passport');
 var Strategy = require('passport-local').Strategy;
 const userController = require('../controllers/user.controller.js');
@@ -12,11 +13,25 @@ const router = express.Router();
 const storage = multer.diskStorage({
 	destination: function (req, file, callback) {
 		if (req.originalUrl == '/updateCoverImage') {
+			let dir = 'public/images/coverpics/';
+
+			if (!fs.existsSync(dir)){
+			    fs.mkdirSync(dir);
+			}
 			callback(null, 'public/images/coverpics/');
 		} else if (req.originalUrl == '/editprofile') {
+			let dir = 'public/images/coverpics/';
+
+			if (!fs.existsSync(dir)){
+			    fs.mkdirSync(dir);
+			}
 			callback(null, 'public/images/profilepics/');
 		} else if (req.originalUrl == '/insertfeed') {
-			console.log("insertPost")
+			let dir = 'public/images/tweetImages/';
+
+			if (!fs.existsSync(dir)){
+			    fs.mkdirSync(dir);
+			}
 			callback(null, 'public/images/tweetImages/');
 		} else {
 			callback(true, null);

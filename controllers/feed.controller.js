@@ -13,8 +13,9 @@ exports.insertPost = async function (req, res, next) {
 				status: 'new' });
 		} else if (req.file !== undefined && req.body.tweet == '') {
 			newTweet = new Feed({ username: req.user.username,
+				tweet: "",
 				status: 'new',
-				imageURL: commonFunction.editpath(req.file.path)
+				imageURL: commonFunction.editpath(req.file.path.replace("public/", ""))
 			});
 		} else {
 			newTweet = new Feed({ username: req.user.username,
