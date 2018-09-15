@@ -20,7 +20,7 @@ const storage = multer.diskStorage({
 			}
 			callback(null, 'public/images/coverpics/');
 		} else if (req.originalUrl == '/editprofile') {
-			let dir = 'public/images/coverpics/';
+			let dir = 'public/images/profilepics/';
 
 			if (!fs.existsSync(dir)){
 			    fs.mkdirSync(dir);
